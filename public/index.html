@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h1>Hallo</h1>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+
+        const socket = io('http://localhost:3500');
+
+        socket.on('test', function (data) {
+            console.log(data);
+            
+        });
+
+
+        socket.on('ping', function (){
+            console.log('ping is recieved from the server');
+        });
+
+        socket.on('pong', function (latency){
+            console.log(latency);
+            console.log('pong was sennd to the server');
+        });
+        socket.on('connect', function (){
+            
+        });
+
+    </script>
+</body>
+</html>
