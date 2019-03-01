@@ -5,33 +5,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
 </head>
 <body>
     
-    <h1>Hallo</h1>
+    <div class="container">
+        <br><br>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <form id="message_form">
+                    <di class="row">
+                        <div class="col-10">
+                            <input autocomplete="off" name="user_message" type="text" class="form-control">
+                        </div>
+                        <div class="col-2">
+                            <input type="submit" value="send" class="btn btn-info form-control">
+                        </div>
+                    </di>
+                </form>
+            </div>
+        </div>
+
+        <ul class="list-group" id="recived_message">
+     
+        </ul>
+
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
 
+ 
+
+
+
         const socket = io('http://localhost:3500');
 
-        socket.on('test', function (data) {
-            console.log(data);
+
+        const form = document.forms[0];
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
             
+            socket.emit('form', {mess : form.user_message.value});
         });
 
-
-        socket.on('ping', function (){
-            console.log('ping is recieved from the server');
-        });
-
-        socket.on('pong', function (latency){
-            console.log(latency);
-            console.log('pong was sennd to the server');
-        });
-        socket.on('connect', function (){
+        socket.on('resend_msg', function (msg){
             
+            document.querySelector('#recived_message').innerHTML += `
+                <li class="list-group-item">${msg.mess}</li>
+            `;
+
         });
+
+        // socket.on('ping', function (){
+        //     console.log('ping is recieved from the server');
+        // });
+
+        // socket.on('pong', function (latency){
+        //     console.log(latency);
+        //     console.log('pong was sennd to the server');
+        // });
+
 
     </script>
 </body>

@@ -15,8 +15,8 @@ const io = socket(server);
 
 io.on('connect', socket =>{
 
-    // console.log(socket.id);
-    // socket.emit('test', 'hallo from Servers');
-    
+   socket.on('form', data =>{
+       io.emit('resend_msg', data);
+   });
 
 });
