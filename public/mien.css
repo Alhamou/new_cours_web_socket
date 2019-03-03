@@ -1,0 +1,58 @@
+body{
+    background: #eaeaea;
+}
+h1{
+    background: linear-gradient(90deg,#70d467 0,#6fbbfa);    
+    color: #8d849e;
+    padding-left: 160px;
+    height: 40px;
+    margin: 0px;
+}
+small.number_of_count{
+    padding: 010px 0px 0px 10px;
+}
+.bar_top{
+    margin: 8px 0px;
+}
+.namespaces{
+    background-color: orange;
+    height: calc(100vh - 40px) ;
+}
+.namespaces img {
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    cursor: pointer;
+    background: #e89a2c;
+    border-radius: 10px;
+}
+.rooms{
+    background-color: blueviolet;
+    height: calc(100vh - 40px);
+    padding: 0px;
+}
+.rooms ul {
+    margin: 20px 0px 0px 0px;
+    padding: 0px;
+    list-style: none;
+}
+.rooms ul li {
+    background: #8962d7;
+    width: 100%;
+    padding: 10px 30px;
+    color: #d7aa6a;
+}
+.rooms ul li:hover{
+    background: #8159d1;
+    cursor: pointer;
+}
+.chats{
+    height: calc(100vh - 40px);
+    background-color: #FFF;
+    position: relative;
+}
+.chats .type_chat{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}

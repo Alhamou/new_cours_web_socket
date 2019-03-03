@@ -6,37 +6,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="./mien.css">
-
 </head>
 
 <body>
+    <h1></h1>
 
     <div class="container">
-        <br><br>
-
         <div class="row">
-            <div class="col-sm-12">
-                <form id="message_form">
-                    <di class="row">
-                        <div class="col-10">
-                            <input autocomplete="off" name="user_message" type="text" class="form-control">
-                        </div>
-                        <div class="col-2">
-                            <input type="submit" value="send" class="btn btn-info form-control">
-                        </div>
-                    </di>
-                </form>
+            <div class="col-1 namespaces text-center">
+                <img src="https://img.icons8.com/dusk/100/000000/google-sites.png">
+                <img src="https://img.icons8.com/dusk/100/000000/mac-os.png">
+                <img src="https://img.icons8.com/dusk/100/000000/android.png">
             </div>
-        </div>
-        <br>
-        <ul class="list-group" id="recived_message"></ul>
 
+            <div class="col-2 rooms">
+                <ul>
+                    <li>one</li>
+                    <li>one</li>
+                    <li>one</li>
+                </ul>
+
+            </div>
+            <div class="col-9 chats ">
+
+                <div class="d-flex justify-content-between bd-highlight bar_top">
+                    <small class="bd-highlight number_of_count">
+                        non mi porta gravida at
+                    </small>
+                    <div class=" bd-highlight">
+                        <div class="d-flex justify-content-end">
+                            <input type="text" class="form-control search_input" placeholder="search hear some word">
+                        </div>
+                    </div>
+
+                </div>
+
+
+                
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action ">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
+                            risus varius blandit.</p>
+                        <small>Donec id elit non mi porta.</small>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action ">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
+                            risus varius blandit.</p>
+                        <small>Donec id elit non mi porta.</small>
+                    </a>
+
+                    <a href="#" class="list-group-item list-group-item-action ">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">List group item heading</h5>
+                            <small>3 days ago</small>
+                        </div>
+                        <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget
+                            risus varius blandit.</p>
+                        <small>Donec id elit non mi porta.</small>
+                    </a>
+
+
+                </div>
+
+
+                <input type="text" class="form-control type_chat" placeholder="search hear some word">
+
+                
+                
+
+            </div>
+
+     
+
+
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="./mien.js"></script>
 </body>
+
 </html>
