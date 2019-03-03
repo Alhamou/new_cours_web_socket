@@ -1,3 +1,4 @@
+
 body{
     background: #eaeaea;
 }
@@ -40,7 +41,8 @@ small.number_of_count{
     background: #8962d7;
     width: 100%;
     padding: 10px 30px;
-    color: #d7aa6a;
+    color: #FFF;
+    text-shadow: 0px 0px 7px #3a1b5a;
 }
 .rooms ul li:hover{
     background: #8159d1;
@@ -54,5 +56,16 @@ small.number_of_count{
 .chats .type_chat{
     position: absolute;
     bottom: 0px;
+    padding-top: 10px;
+    padding-left: 10px;
     right: 0px;
+    background: #FFF;
+    border-top: 1px solid #cbcbcb;
+    width: 100%;
+}
+.icon_room{
+    float: right;
+    color: #f0f0f0;
+    background-color: #9e9cf2;
+    text-shadow: 0px 0px 7px #3a1b5a;
 }

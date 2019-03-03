@@ -7,25 +7,24 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="./mien.css">
 </head>
 
 <body>
     <h1></h1>
-
     <div class="container">
         <div class="row">
-            <div class="col-1 namespaces text-center">
-                <img src="https://img.icons8.com/dusk/100/000000/google-sites.png">
-                <img src="https://img.icons8.com/dusk/100/000000/mac-os.png">
-                <img src="https://img.icons8.com/dusk/100/000000/android.png">
+            <div class="col-1 namespaces text-center" id="namespaces">
+                <!-- this update with JS. -->
             </div>
 
             <div class="col-2 rooms">
-                <ul>
-                    <li>one</li>
-                    <li>one</li>
-                    <li>one</li>
+                <ul id="rooms">
+
+                    <!-- this update with JS. -->
                 </ul>
 
             </div>
@@ -33,7 +32,8 @@
 
                 <div class="d-flex justify-content-between bd-highlight bar_top">
                     <small class="bd-highlight number_of_count">
-                        non mi porta gravida at
+                        Mompur Online
+                        <span class="badge badge-secondary">23</span>
                     </small>
                     <div class=" bd-highlight">
                         <div class="d-flex justify-content-end">
@@ -44,7 +44,7 @@
                 </div>
 
 
-                
+
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action ">
                         <div class="d-flex w-100 justify-content-between">
@@ -78,16 +78,22 @@
 
 
                 </div>
-
-
-                <input type="text" class="form-control type_chat" placeholder="search hear some word">
-
-                
-                
+                <div class="type_chat">
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <i class="far fa-keyboard"></i>&nbsp; Type your Message
+                        </div>
+                        <div class="form-group mx-sm-5 mb-2">
+                            <label for="inputPassword2" class="sr-only">your message</label>
+                            <input type="text" class="form-control" id="inputPassword2" placeholder="your message">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">send <i class="far fa-comment-alt"></i></button>
+                    </form>
+                </div>
 
             </div>
 
-     
+
 
 
         </div>

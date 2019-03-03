@@ -1,23 +1,31 @@
-// const socket = io('http://localhost:3500');
+const socket = io('http://localhost:3500');
 
 
-// const form = document.forms[0];
-// form.addEventListener('submit', function (e) {
-//     e.preventDefault();
-//     socket.emit('form', { mess: form.user_message.value });
-// });
+const form = document.forms[0];
+form.onsubmit = function(e){
+    e.preventDefault()
+    console.log('submited!');
+}
 
-// socket.on('resend_msg', function (msg) {
-//     document.querySelector('#recived_message').innerHTML += `
-//         <li class="list-group-item">${msg.mess}</li>
-//     `;
-// });
 
-// socket.on('data', (data)=>{ 
-//     const r = data.map(d => {
-//         return d;
-//     });
-//     console.log(r)
-//     r.forEach(d => console.log(d));
-// });
+
+socket.on('data', (data)=>{ 
+    const d = data.map(d => {
+        return d;
+    });
+    const ns = document.querySelector('#namespaces');
+    const rm = document.querySelector('#rooms');
+    ns.innerHTML = '';
+    rm.innerHTML = '';
+    d.forEach(d => {
+        ns.innerHTML += `<img src="${d.img}">`;
+        
+    });
+    
+    d[0].rooms.forEach(room => {
+        rm.innerHTML += `<li><span>${room.roomTitle}<span class="icon_room badge badge-secondary">New</span></span></li>`
+    });
+
+    
+});
 
