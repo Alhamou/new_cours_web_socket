@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./mien.css">
 
 </head>
+
 <body>
-    
+
     <div class="container">
         <br><br>
 
@@ -29,48 +31,12 @@
                 </form>
             </div>
         </div>
-
-        <ul class="list-group" id="recived_message">
-     
-        </ul>
+        <br>
+        <ul class="list-group" id="recived_message"></ul>
 
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-
- 
-
-
-
-        const socket = io('http://localhost:3500');
-
-
-        const form = document.forms[0];
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            
-            socket.emit('form', {mess : form.user_message.value});
-        });
-
-        socket.on('resend_msg', function (msg){
-            
-            document.querySelector('#recived_message').innerHTML += `
-                <li class="list-group-item">${msg.mess}</li>
-            `;
-
-        });
-
-        // socket.on('ping', function (){
-        //     console.log('ping is recieved from the server');
-        // });
-
-        // socket.on('pong', function (latency){
-        //     console.log(latency);
-        //     console.log('pong was sennd to the server');
-        // });
-
-
-    </script>
+    <script src="./mien.js"></script>
 </body>
 </html>
