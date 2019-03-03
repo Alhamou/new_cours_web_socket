@@ -7,16 +7,18 @@ const android = new Namespace(2,'https://img.icons8.com/dusk/100/000000/android.
 
 
 wiki.addRoom(new Room(0,'All Peapul','/wiki'));
-wiki.addRoom(new Room(1,'All Tier','/wiki'));
+wiki.addRoom(new Room(1,'All wiki','/wiki'));
 wiki.addRoom(new Room(2,'All hummen','/wiki'));
 
 apple.addRoom(new Room(0,'All Peap','/apple'));
-apple.addRoom(new Room(1,'All Tier','/apple'));
+apple.addRoom(new Room(1,'All apple','/apple'));
 apple.addRoom(new Room(2,'All hum','/apple'));
 
 android.addRoom(new Room(0,'All Peap','/android'));
-android.addRoom(new Room(1,'All Tier','/android'));
+android.addRoom(new Room(1,'All android','/android'));
 android.addRoom(new Room(2,'All hum','/android'));
-
+android.addRoom(new Room(3,'All Peap','/android'));
+android.addRoom(new Room(4,'All android','/android'));
+android.addRoom(new Room(5,'All hum','/android'));
 
 module.exports = [wiki, apple, android];

@@ -21,7 +21,12 @@ io.on('connect', socket => {
 
     socket.on('form', data => {
         io.emit('resend_msg', data);
+        
     });
-    socket.emit('data', nsOpject);
+    socket.emit('data', {nsOpject, room : 0});
 
+    socket.on('room', function(room){
+        socket.emit('data', {nsOpject, room});
+    })
 });
+

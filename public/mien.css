@@ -1,13 +1,18 @@
 
 body{
     background: #eaeaea;
+    overflow-x: hidden;
 }
-h1{
+h1#bar_top_home{
     background: linear-gradient(90deg,#70d467 0,#6fbbfa);    
     color: #8d849e;
     padding-left: 160px;
     height: 40px;
     margin: 0px;
+    min-width: 1140px;
+}
+.container{
+    min-width: 1140px;
 }
 small.number_of_count{
     padding: 010px 0px 0px 10px;
@@ -52,6 +57,10 @@ small.number_of_count{
     height: calc(100vh - 40px);
     background-color: #FFF;
     position: relative;
+}
+.box_message{
+    height: calc(100vh - 211px);
+    overflow-y: auto;
 }
 .chats .type_chat{
     position: absolute;
