@@ -17,7 +17,7 @@ socket.on('connect', function() {
 
 
 
-socket.on('nsList', (nsList,count_all) => {
+socket.on('nsList', (nsList,count_all, chat_history) => {
 
     // Count all clients connected to server:
     $('#count_all').text(count_all);
@@ -32,8 +32,12 @@ socket.on('nsList', (nsList,count_all) => {
     // });
 
 
+    
+    chat_history.forEach(function(msgs){
+        $('.box_message').append(newHtmlMessage(msgs));
+    });
+
+
     joinNs('/wiki');
     
 });
-
-

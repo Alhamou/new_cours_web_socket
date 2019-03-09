@@ -3,7 +3,7 @@ function joinNs (endPoint){
 
     nsSocket = io(`http://localhost:3500${endPoint}`);
 
-
+    let room_id = 0;
 
 
     nsSocket.on('nsRoomsLoad', function(rooms,rooms_users_onlin){
@@ -14,11 +14,15 @@ function joinNs (endPoint){
         $('#rooms').empty();
         rooms.forEach(room => {
             let p = room.private ? 'true' : 'false';
-            $('#rooms').append(`<li class="room "><span class="title_room">${room.roomTitle}<span class="icon_room badge badge-secondary">${p}</span></span></li>`);
+            $('#rooms').append(`<li ri="${room.id}" class="room"><span class="title_room">${room.roomTitle}<span class="icon_room badge badge-secondary">${p}</span></span></li>`);
         });
 
         $('.room').click(function(e){
             if( $(e.target).hasClass('room')){
+
+                // rename room ID to send it to Server.
+                room_id = $(e.target).attr('ri');
+
                 $(e.target).addClass('active_room').siblings().removeClass('active_room');
             }
         });
@@ -29,7 +33,7 @@ function joinNs (endPoint){
 
     $('#form_msg').submit(function(e){
         e.preventDefault();
-        nsSocket.emit('msg_chat', {text: $('#chat_msg').val()});
+        nsSocket.emit('msg_chat', {text: $('#chat_msg').val()}, room_id);
     });
 
     nsSocket.on('msgToClients', function(msgFromServer){
@@ -53,9 +57,6 @@ function newHtmlMessage (msg){
                 <p class="text_msg_publich">${msg.msg}</p>
         </div>
     </div>
-
-
-    
     `
     return newHtml;
 }
