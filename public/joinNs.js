@@ -5,27 +5,22 @@ function joinNs (endPoint){
 
     nsSocket.on('nsRoomsLoad', function(rooms,rooms_users_onlin){
 
-        
-        document.querySelector('#rooms_users_onlin').textContent = rooms_users_onlin;
-        const rm = document.querySelector('#rooms');
-        
-        rm.innerHTML = '';
+        // update the count users of rooms 
+        $('#rooms_users_onlin').text(rooms_users_onlin);
+
+        $('#rooms').empty();
         rooms.forEach(room => {
             let p = room.private ? 'true' : 'false';
-            rm.innerHTML += `<li class="room"><span>${room.roomTitle}<span class="icon_room badge badge-secondary">${p}</span></span></li>`
+            $('#rooms').append(`<li class="room "><span class="title_room">${room.roomTitle}<span class="icon_room badge badge-secondary">${p}</span></span></li>`);
         });
 
-        const roomElement = document.getElementsByClassName('room');
-        Array.from(roomElement).forEach(room=>{
-            room.addEventListener('click', function(){
-                // nsSocket.emit();
-                // console.log(room)
-            });
+        $('.room').click(function(e){
+            if( $(e.target).hasClass('room')){
+                $(e.target).addClass('active_room').siblings().removeClass('active_room');
+            }
         });
 
-        const topRoomName = document.querySelector('.room').textContent;
-        console.log(topRoomName);
-        joinRoom(topRoomName);
+        joinRoom($('.room:first-child').text());
         
         
     });

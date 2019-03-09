@@ -1,7 +1,19 @@
 
-const socket = io(`http://localhost:3500`);
+// const socket = io(`http://localhost:3500`);
+const socket = io.connect('http://localhost:3500', {reconnect: true});
 
 let snSocket = '';
+
+socket.on('connect', function() {
+
+    console.log('Client connected.');
+
+    // Disconnect listener
+    socket.on('disconnect', function() {
+        console.log('Client disconnected.');
+    });
+});
+
 
 const form = document.forms[0];
 form.onsubmit = function (e) { 
@@ -9,48 +21,23 @@ form.onsubmit = function (e) {
     form.message.value = '';
 };
 
-window.onload = function (){
-    // document.onclick = function(e){
-    //     if(e.target.getAttribute('ns')){
-    //         const nsAttr = e.target.getAttribute('ns');
-    //         // console.log(nsAttr);
-    //         addNameSpace(nsAttr);
-    //     }
-    // }
-}
-
 socket.on('nsList', (nsList,count_all) => {
 
-    
-    const ns = document.querySelector('#namespaces');
-    document.querySelector('#count_all').textContent = count_all;
+    // Count all clients connected to server:
+    $('#count_all').text(count_all);
 
-
-    ns.innerHTML = '';
-
+    $('#namespaces').empty();
     nsList.forEach(d => {
-        ns.innerHTML += `<img ns="${d.endpoint}" src="${d.img}" class="endpoint">`;
+        $('#namespaces').append(`<img ns="${d.endpoint}" src="${d.img}" class="endpoint">`);
+    });
+    $('.endpoint').click(function(e){
+        const endPointAttr = $(e.target).attr('ns');
+        console.log(endPointAttr)
     });
 
 
-    Array.from(document.getElementsByClassName('endpoint')).forEach(function(roomNumber){
-        roomNumber.addEventListener('click', function (){
-            const endPointAttr = roomNumber.getAttribute('ns');
-            // console.log(endPointAttr)
-            // socket.emit('joinToRoom', endPointAttr);
-            //const getEndPoint = nsOpject.filter(d => {return d.endpoint === endPointAttr});
-            //addRoom(getEndPoint);
-        });
-    });
-
-
-    joinNs('/wiki')
-
-    // const setEndPoint = nsList.filter(d => {return d.endpoint === '/wiki'});
-    // addRoom(nsList);
-
-    // addNameSpace('/wiki');
-
+    joinNs('/wiki');
+    
 });
 
 

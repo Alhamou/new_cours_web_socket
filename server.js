@@ -27,8 +27,8 @@ io.on('connection', function(socket){
 
     // Count all clients connected to server:
     var srvSockets = io.sockets.sockets;
-    console.log(Object.keys(srvSockets).length)
     const count_all = Object.keys(srvSockets).length;
+    
     socket.emit('nsList', nsDate,count_all);
 });
 
@@ -42,21 +42,17 @@ nsList.forEach(function(namespace){
         const nspSockets = io.of('/wiki').sockets;
         const count_rooms =Object.keys(nspSockets).length;
 
-
+        
         nsSocket.emit('nsRoomsLoad', nsList[0].rooms, count_rooms);
 
 
         nsSocket.on('joinRoom', function(joinRoom, callback){
             nsSocket.join(joinRoom);
 
-            io.of(namespace.endpoint).clients((error, clients) => {
-                // if (error) throw error;
+            io.of(namespace.endpoint).in(joinRoom).clients((error, clients) => {
+                if (error) throw error;
                 callback(clients.length);
-            });
-            
-
-
-            
+              });
 
 
         } );

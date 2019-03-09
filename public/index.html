@@ -27,14 +27,16 @@
                 </div>
             </div>
 
-            <div class="col-2 rooms">
-                <ul>
-                    <li class="room">In Rooms <span><span class="icon_room badge badge-secondary" id="rooms_users_onlin"></span></span></li>
+            <div class="col-2 line_tow">
+                <ul class="count_rooms_o_u">
+                    <li class="">In Rooms <span><span class="badge badge-secondary" id="rooms_users_onlin"></span></span></li>
                 </ul>
-                <ul id="rooms">
-
-                    <!-- this update with JS. -->
-                </ul>
+                
+                <div class="rooms">
+                    <ul id="rooms">
+                        <!-- this update with JS. -->
+                    </ul>
+                </div>
 
             </div>
             <div class="col-9 chats ">
@@ -109,6 +111,7 @@
         </div>
     </div>
 
+    <script src="./jquery-3.3.1.min.js"></script>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="./mien.js"></script>

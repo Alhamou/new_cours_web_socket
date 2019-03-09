@@ -35,7 +35,6 @@ small.number_of_count{
 }
 .rooms{
     background-color: blueviolet;
-    height: calc(100vh - 40px);
     padding: 0px;
 }
 .rooms ul {
@@ -53,6 +52,7 @@ small.number_of_count{
 .rooms ul li:hover{
     background: #8159d1;
     cursor: pointer;
+    transition: 0.2s;
 }
 .chats{
     height: calc(100vh - 40px);
@@ -89,4 +89,34 @@ small.number_of_count{
     color: #FFF;
     font-size: 20px;
     text-shadow: 0px 0px 1px #870606;
+}
+.count_rooms_o_u{
+    list-style: none;
+    padding: 20px 30px 0px 30px;
+    color: #FFF;
+    text-shadow: 0px 0px 7px #3a1b5a;
+}
+.line_tow{
+    padding: 0px;
+    height: calc(100vh - 40px);
+    background-color: blueviolet;
+}
+#rooms_users_onlin{
+    float: right;
+    color: #f0f0f0;
+    background-color: #9e9cf2;
+    text-shadow: 0px 0px 7px #3a1b5a;
+}
+.active_room{
+    background-color: #6341a8 !important;
+    transition-timing-function: ease-in;
+    transition: 0.5s;
+}
+.title_room{
+    position: relative;
+    z-index: -1;
+}
+.rooms .room{
+    position: relative;
+    z-index: +1;
 }
