@@ -3,7 +3,10 @@ function joinNs (endPoint){
 
     nsSocket = io(`http://localhost:3500${endPoint}`);
 
-    let room_id = 0;
+
+    nsSocket.on('updateNumberCountUser', function(updateUser){
+        $('#online_room').text(updateUser);
+    });
 
 
     nsSocket.on('nsRoomsLoad', function(rooms,rooms_users_onlin){
@@ -14,32 +17,41 @@ function joinNs (endPoint){
         $('#rooms').empty();
         rooms.forEach(room => {
             let p = room.private ? 'true' : 'false';
-            $('#rooms').append(`<li ri="${room.id}" class="room"><span class="title_room">${room.roomTitle}<span class="icon_room badge badge-secondary">${p}</span></span></li>`);
+            $('#rooms').append(`<li ri="${room.id}" class="room"><span class="title_room">${room.roomTitle}</span><span class="icon_room badge badge-secondary">${p}</span></li>`);
         });
 
         $('.room').click(function(e){
             if( $(e.target).hasClass('room')){
 
-                // rename room ID to send it to Server.
-                room_id = $(e.target).attr('ri');
+                // // rename room ID to send it to Server.
+                // room_id = $(e.target).attr('ri');
 
                 $(e.target).addClass('active_room').siblings().removeClass('active_room');
+
+                // joinRoom();
+
             }
         });
 
-        joinRoom($('.room:first-child').text());
+        joinRoom($('.room:first-child .title_room').text());
         
     });
 
     $('#form_msg').submit(function(e){
         e.preventDefault();
-        nsSocket.emit('msg_chat', {text: $('#chat_msg').val()}, room_id);
+
+        nsSocket.emit('msg_chat', {text: $('#chat_msg').val()});
     });
 
     nsSocket.on('msgToClients', function(msgFromServer){
 
         $('.box_message').append(newHtmlMessage(msgFromServer));
         $('#chat_msg').val('');
+
+        // go to last Message.
+        const box_msg = document.querySelector('.box_message');
+        box_msg.scrollTo(0, $('.box_message').prop('scrollHeight'));
+
     })
 }
 
@@ -60,3 +72,4 @@ function newHtmlMessage (msg){
     `
     return newHtml;
 }
+

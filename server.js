@@ -30,6 +30,7 @@ io.on('connection', function(socket){
 
     socket.emit('nsList', nsData,count_all, chat_history);
 
+    
 });
 
 
@@ -49,6 +50,8 @@ nsList.forEach(function(namespace){
         const count_rooms =Object.keys(nspSockets).length;
 
 
+
+
         nsSocket.emit('nsRoomsLoad', nsList[0]/*change hear Rooms*/.rooms, count_rooms);
 
 
@@ -56,16 +59,18 @@ nsList.forEach(function(namespace){
 
             // JOIN to a Room.
             nsSocket.join(joinRoom);
+            
 
-            // get Current of members.
-            io.of(namespace.endpoint).in(joinRoom).clients((error, clients) => {
-                if (error) throw error;
-                callback(clients.length);
+            // update Online Current of members in Room.
+            io.of('/wiki').to(joinRoom).clients((error, clients) =>{
+                io.of('/wiki').emit('updateNumberCountUser', clients.length);
             });
+
 
         });
 
-        nsSocket.on('msg_chat',function(msg, room_id){
+        let roomTitle = '';
+        nsSocket.on('msg_chat',function(msg){
 
             const fullMsg = {
                 img: 'https://loremflickr.com/320/240/brazil,rio',
@@ -73,19 +78,20 @@ nsList.forEach(function(namespace){
                 date: Date.now(),
                 msg: msg.text
             };
-            
-            try{ // ignore error history not undefaind.
-                const ROOM_ID = namespace.rooms.filter(room => {return room.id === room_id})
-                [0].history.push(fullMsg);
-            } catch (error){}
 
+            roomTitle = Object.keys(nsSocket.rooms)[1];
+            const nsRoom = namespace.rooms.find(r => {return r.roomTitle === roomTitle});
+            nsRoom.addHistory(fullMsg);
 
-            const roomTitle = Object.keys(nsSocket.rooms)[1];
 
             // send message to specific ROOM NAME with .TO(ROOM_NAME).
-            io.of('/wiki').to(roomTitle).emit('msgToClients', fullMsg);
-        })
+            io.of(namespace.endpoint).to(roomTitle).emit('msgToClients', fullMsg);
+        });
+
+
+       
         
+       
     });
 });
 

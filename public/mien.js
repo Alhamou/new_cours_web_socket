@@ -4,15 +4,15 @@ const socket = io.connect('http://localhost:3500', {reconnect: true});
 
 let snSocket = '';
 
-socket.on('connect', function() {
+// socket.on('connect', function() {
 
-    console.log('Client connected.');
+//     console.log('Client connected.');
 
-    // Disconnect listener
-    socket.on('disconnect', function() {
-        console.log('Client disconnected.');
-    });
-});
+//     // Disconnect listener
+//     socket.on('disconnect', function() {
+//         console.log('Client disconnected.');
+//     });
+// });
 
 
 
@@ -35,9 +35,16 @@ socket.on('nsList', (nsList,count_all, chat_history) => {
     
     chat_history.forEach(function(msgs){
         $('.box_message').append(newHtmlMessage(msgs));
+        
+        const box_msg = document.querySelector('.box_message');
+        box_msg.scrollTo(0, $('.box_message').prop('scrollHeight'));
+
     });
 
 
     joinNs('/wiki');
     
+
+
 });
+

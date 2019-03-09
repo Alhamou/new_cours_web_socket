@@ -6,10 +6,10 @@ const apple = new Namespace(1,'https://img.icons8.com/dusk/100/000000/mac-os.png
 const android = new Namespace(2,'https://img.icons8.com/dusk/100/000000/android.png', 'android', '/android');
 
 
-wiki.addRoom(new Room(0,'All Peapul','/wiki'));
-wiki.addRoom(new Room(1,'All wiki wiki','/wiki',true));
-wiki.addRoom(new Room(2,'All hummen','/wiki'));
-wiki.addRoom(new Room(3,'wiki men','/wiki',true));
+wiki.addRoom(new Room(0,'comedy','/wiki'));
+wiki.addRoom(new Room(1,'fantastic','/wiki',true));
+wiki.addRoom(new Room(2,'horror','/wiki'));
+wiki.addRoom(new Room(3,'action','/wiki',true));
 
 
 apple.addRoom(new Room(0,'All Peap','/apple'));
