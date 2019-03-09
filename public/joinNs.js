@@ -35,20 +35,27 @@ function joinNs (endPoint){
     nsSocket.on('msgToClients', function(msgFromServer){
 
         $('.box_message').append(newHtmlMessage(msgFromServer));
+        $('#chat_msg').val('');
     })
 }
 
 function newHtmlMessage (msg){
 
+    const covTime = new Date(msg.date).toDateString();
     const newHtml = `
-    <a href="#" class="list-group-item list-group-item-action ">
-        <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">${msg.username}</h5>
-            <small>${msg.date}</small>
+
+    <div class="box_msg">
+        <div class="div_msg_img">
+            <img class="msg_img" src="${msg.img}" alt="avatar">
         </div>
-        <p class="mb-1">${msg.msg}</p>
-        <small>${msg.date}</small>
-    </a>
+            <div>
+                <p class="msg_username">${msg.username} <small>${covTime}</small></p>
+                <p class="text_msg_publich">${msg.msg}</p>
+        </div>
+    </div>
+
+
+    
     `
     return newHtml;
 }

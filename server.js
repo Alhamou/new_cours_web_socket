@@ -61,7 +61,7 @@ nsList.forEach(function(namespace){
         nsSocket.on('msg_chat',function(msg){
 
             const fullMsg = {
-                img: 'https://image.com',
+                img: 'https://loremflickr.com/320/240/brazil,rio',
                 username: 'Emad',
                 date: Date.now(),
                 msg: msg.text
