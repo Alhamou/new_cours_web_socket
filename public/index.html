@@ -17,11 +17,20 @@
     <h1 class="bar_top_home" id="bar_top_home"></h1>
     <div class="container">
         <div class="row">
-            <div class="col-1 namespaces text-center" id="namespaces">
-                <!-- this update with JS. -->
+                
+            <div class="col-1 namespaces text-center" >
+                    <p class="p-3" id="count_all">
+                        <!-- this update with JS. -->
+                    </p>
+                <div id="namespaces">
+                        <!-- this update with JS. -->
+                </div>
             </div>
 
             <div class="col-2 rooms">
+                <ul>
+                    <li class="room">In Rooms <span><span class="icon_room badge badge-secondary" id="rooms_users_onlin"></span></span></li>
+                </ul>
                 <ul id="rooms">
 
                     <!-- this update with JS. -->
@@ -32,8 +41,10 @@
 
                 <div class="d-flex justify-content-between bd-highlight bar_top">
                     <small class="bd-highlight number_of_count">
-                        Mompur Online
-                        <span class="badge badge-secondary">23</span>
+                        Online
+                        <span class="badge badge-secondary" id="online_room">
+                            <!-- this update with JS. -->
+                        </span>
                     </small>
                     <div class=" bd-highlight">
                         <div class="d-flex justify-content-end">
@@ -82,9 +93,9 @@
                         <div class="form-group mb-2">
                             <i class="far fa-keyboard"></i>&nbsp; Type your Message
                         </div>
-                        <div class="form-group mx-sm-5 mb-2">
+                        <div class="form-group col-sm-8 mb-2">
                             <label for="inputPassword2" class="sr-only">your message</label>
-                            <input type="text" class="form-control" id="inputPassword2" placeholder="your message">
+                            <input autocomplete="off" name="message" type="text" class="text_message form-control" id="inputPassword2" placeholder="your message">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">send <i class="far fa-comment-alt"></i></button>
                     </form>
@@ -99,25 +110,11 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="/socket.io/socket.io.js"></script>
     <script src="./mien.js"></script>
+    <script src="./joinNs.js"></script>
+    <script src="./joinRoom.js"></script>
+
 </body>
 
 </html>
