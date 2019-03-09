@@ -15,11 +15,7 @@ socket.on('connect', function() {
 });
 
 
-const form = document.forms[0];
-form.onsubmit = function (e) { 
-    e.preventDefault();
-    form.message.value = '';
-};
+
 
 socket.on('nsList', (nsList,count_all) => {
 
@@ -30,10 +26,10 @@ socket.on('nsList', (nsList,count_all) => {
     nsList.forEach(d => {
         $('#namespaces').append(`<img ns="${d.endpoint}" src="${d.img}" class="endpoint">`);
     });
-    $('.endpoint').click(function(e){
-        const endPointAttr = $(e.target).attr('ns');
-        console.log(endPointAttr)
-    });
+    // $('.endpoint').click(function(e){
+    //     const endPointAttr = $(e.target).attr('ns');
+    //     console.log(endPointAttr)
+    // });
 
 
     joinNs('/wiki');

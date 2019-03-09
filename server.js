@@ -42,7 +42,7 @@ nsList.forEach(function(namespace){
         const nspSockets = io.of('/wiki').sockets;
         const count_rooms =Object.keys(nspSockets).length;
 
-        
+
         nsSocket.emit('nsRoomsLoad', nsList[0].rooms, count_rooms);
 
 
@@ -54,9 +54,24 @@ nsList.forEach(function(namespace){
                 callback(clients.length);
               });
 
+        });
 
-        } );
 
+
+        nsSocket.on('msg_chat',function(msg){
+
+            const fullMsg = {
+                img: 'https://image.com',
+                username: 'Emad',
+                date: Date.now(),
+                msg: msg.text
+            }
+
+            const roomTitle = Object.keys(nsSocket.rooms)[1];
+            io.of('/wiki').to(roomTitle).emit('msgToClients', fullMsg);
+            
+        })
+        
     });
 });
 
