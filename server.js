@@ -1,9 +1,9 @@
 const express = require('express');
 const socket = require('socket.io');
-const nsList = require('./data/namespaces');
+const namespaces = require('./data/namespaces');
 const app = express();
 
-const server = app.listen(3500);
+const server = app.listen(3600);
 const io = socket(server);
 
 app.use(express.static(__dirname + '/public'));
@@ -17,19 +17,14 @@ app.get('/', (req, res) => {
 // Main Socket io.
 io.on('connection', function(socket){
 
-    const nsData = nsList.map(ns=>{
+    const nsData = namespaces.map(ns=>{
         return{
             img:ns.img,
             endpoint: ns.endpoint
         }
     });
 
-    // Count all clients connected to server:
-    const count_all = Object.keys(io.sockets.sockets).length;
-    const chat_history = nsList[0].rooms[0].history;
-
-    socket.emit('nsList', nsData,count_all, chat_history);
-
+    socket.emit('nsList', nsData);
     
 });
 
@@ -40,7 +35,7 @@ io.on('connection', function(socket){
 //////////////////////////////////////
 
 
-nsList.forEach(function(namespace){
+namespaces.forEach(function(namespace){
 
     
     io.of(namespace.endpoint).on('connection', function(nsSocket){
@@ -50,26 +45,34 @@ nsList.forEach(function(namespace){
         const count_rooms =Object.keys(nspSockets).length;
 
 
+        nsSocket.emit('nsRoomsLoad', namespace.rooms, count_rooms);
 
 
-        nsSocket.emit('nsRoomsLoad', nsList[0]/*change hear Rooms*/.rooms, count_rooms);
-
-
-        nsSocket.on('joinRoom', function(joinRoom, callback){
+        nsSocket.on('joinRoom', function(joinRoom){
 
             // JOIN to a Room.
+
+            let roomTitle = Object.keys(nsSocket.rooms)[1];
+
+            nsSocket.leave(roomTitle);
+
             nsSocket.join(joinRoom);
             
 
-            // update Online Current of members in Room.
-            io.of('/wiki').to(joinRoom).clients((error, clients) =>{
-                io.of('/wiki').emit('updateNumberCountUser', clients.length);
+            const chat_history = namespace.rooms.find(h => {
+                return h.roomTitle === joinRoom;
             });
 
+            // console.log(joinRoom);
+            nsSocket.emit('chat_history', chat_history.history);
+
+            // update Online Current of members in Room.
+            io.of(namespace.endpoint).to(joinRoom).clients((error, clients) =>{
+                io.of(namespace.endpoint).emit('updateNumberCountUser', clients.length);
+            });
 
         });
 
-        let roomTitle = '';
         nsSocket.on('msg_chat',function(msg){
 
             const fullMsg = {
@@ -79,19 +82,18 @@ nsList.forEach(function(namespace){
                 msg: msg.text
             };
 
-            roomTitle = Object.keys(nsSocket.rooms)[1];
+            let roomTitle = Object.keys(nsSocket.rooms)[1];
+            // console.log(Object.keys(nsSocket.rooms));
+
             const nsRoom = namespace.rooms.find(r => {return r.roomTitle === roomTitle});
             nsRoom.addHistory(fullMsg);
 
-
+            
             // send message to specific ROOM NAME with .TO(ROOM_NAME).
             io.of(namespace.endpoint).to(roomTitle).emit('msgToClients', fullMsg);
         });
 
-
-       
-        
-       
+   
     });
 });
 
