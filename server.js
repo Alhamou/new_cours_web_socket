@@ -3,7 +3,10 @@ const socket = require('socket.io');
 const namespaces = require('./data/namespaces');
 const app = express();
 
-const server = app.listen(3600);
+const port = 3600;
+const server = app.listen(port, ()=>{
+    console.log(`Server run on Port: ${port}`);
+});
 const io = socket(server);
 
 app.use(express.static(__dirname + '/public'));
