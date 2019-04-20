@@ -36,10 +36,9 @@ socket.on('nsList', (nsList) => {
     // Search a word of Messages in all chat on Keyup.
     $('#search_input').on('keyup', function (e){
 
-        $('.box_msg').hide();
-        $('.box_msg').children().each(function (i, v){
+        $('.box_msg').hide().children().each(function (i, v){
             if(($(v).find('.text_msg_publich').text()).indexOf(e.target.value) >= 0){
-                $(this).closest('.box_msg').show()
+                $(this).closest('.box_msg').show();
             }
         });
         
