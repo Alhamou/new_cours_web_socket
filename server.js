@@ -89,6 +89,7 @@ namespaces.forEach(function(namespace){
             // console.log(Object.keys(nsSocket.rooms));
 
             const nsRoom = namespace.rooms.find(r => {return r.roomTitle === roomTitle});
+
             nsRoom.addHistory(fullMsg);
 
             
